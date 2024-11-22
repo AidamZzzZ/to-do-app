@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="border border-inherit w-2/6 mx-auto bg-slate-100 rounded-md mt-10 shadow-lg p-6 mb-5">
+	<h2 class="font-semibold text-center m-5 text-4xl m-5 ">Register</h2>
+	<form method="post" class="w-full flex flex-wrap justify-center flex-col m-auto">
+		{% csrf_token %}
+		{{ form | crispy }}
+		<div>
+			<button type="submit" class="bg-indigo-700 block m-auto mt-5 mb-3 p-2 hover:bg-indigo-900 transition ease-in rounded-md">Register</button>
+		</div>
+	</form>
+</div>
+{% endblock %}

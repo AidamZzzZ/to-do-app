@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="border border-inherit max-w-96 mx-auto bg-slate-100 rounded-md mt-10 shadow-lg p-6">
+	<div class="flex justify-end">
+		<span class="text-indigo-700 mr-2">@{{ user.username | upper }}</span>
+		<form action="{% url 'logout' %}" method="post">
+			{% csrf_token %}
+			<button type="submit" class="underline hover:text-slate-800">Logout</button>
+		</form>
+	</div>
+	<h1 class="text-center font-semibold text-4xl m-3">To do list</h1>
+		<form class="flex justity-between mb-3" method="post">
+			{% csrf_token %}
+			{{ form }}
+			<button type="submit" class="ml-2 bg-indigo-700 p-2 hover:bg-indigo-900 rounded transition-colors ease-in text-white">create</button>
+		</form>
+	<ul class="mt-5">
+	{% for t in tasks %}
+		<li class="whitespace-nowrap ">
+			<form class="flex justify-between items-center mt-3 mb-3" action="{% url 'toggle-task-status' t.pk %}" method="post">
+				{% csrf_token %}
+				<div class="flex justify-start">
+					<input type="checkbox" onchange="this.form.submit()" name="status" {% if t.status %}checked{% endif %}> 
+					<span class="ml-2"><a href="{% url 'detail-task' t.pk %}">{{ t.title|truncatechars:35 }}</a></span>
+				</div>
+				<div class="flex justify-end">
+					<a href="{% url 'update-task' t.pk %}"><i class="fa-solid fa-pen fa-lg hover:text-indigo-800 mr-2"></i></a>
+					<a href="{% url 'delete-task' t.pk %}"><i class="fa-solid fa-trash fa-lg hover:text-red-600"></i></a>
+				</div>
+			</form>
+		</li>
+		<hr>
+	{% empty %}
+		<p class="text-red-500 font-semibold">There are no tasks</p>
+	{% endfor %}
+	</ul>
+</div>
+
+{% endblock %}

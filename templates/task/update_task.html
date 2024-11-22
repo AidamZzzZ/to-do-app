@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="border border-inherit w-96 mx-auto bg-slate-100 rounded-md mt-10 shadow-lg p-6">
+	<a href="{% url 'home' %}"><i class="fa-solid fa-arrow-left mb-3"></i></a>
+	<form class="flex justity-between mb-3" method="post">
+		{% csrf_token %}
+		{{ form }}
+		<button type="submit" class="ml-2 bg-indigo-700 p-2 hover:bg-indigo-900 rounded transition-colors ease-in text-white">update</button>
+	</form>
+</div>
+
+{% endblock %}

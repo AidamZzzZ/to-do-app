@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="border border-inherit w-96 mx-auto bg-slate-100 rounded-md mt-10 shadow-lg p-6">
+	<form method="post">
+		Are you delete?
+		{% csrf_token %}
+		<div class="flex mt-3">
+			<a href="{% url 'home' %}" class="inline-block bg-red-700 p-2 hover:bg-red-900 rounded transition-colors ease-in text-white mr-2">cancel</a>
+			<button class="block bg-indigo-700 p-2 hover:bg-indigo-900 rounded transition-colors ease-in text-white" type="submit">delete</button>
+		</div>
+	</form>    
+</div>
+
+{% endblock %}

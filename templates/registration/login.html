@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="border border-inherit w-96 mx-auto bg-slate-100 rounded-md mt-10 shadow-lg p-6">
+	<h2 class="font-semibold text-center m-5 text-4xl m-5">Login</h2>
+	<form method="post" class="w-full flex flex-wrap justify-center">
+		{% csrf_token %}
+		{{ form | crispy }}
+		<div>
+			<button type="submit" class="bg-indigo-700 block m-auto mt-5 mb-3 p-2 hover:bg-indigo-900 transition ease-in rounded-md">Login</button>
+			<p>If you don't have account:</p>
+			<a href="{% url 'register' %}" class="underline">Register</a>
+		</div>
+	</form>
+</div>
+{% endblock  %}
