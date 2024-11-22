@@ -1,5 +1,5 @@
 {
-	"build" : [
+	"builds" : [
 		{
 			"src": "to_do_app/wsgi.py",
 			"use": "@vercel/python"
